@@ -2,8 +2,10 @@ package fr.molec.extended_spotify_backend.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 public class TokenResponseModel {
 
     @JsonProperty("access_token")
