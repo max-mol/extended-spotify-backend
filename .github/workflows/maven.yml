@@ -32,4 +32,4 @@ jobs:
       env:
         CLIENT_ID: ${{ secrets.CLIENT_ID }}
         CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
-      run: mvn -B package --file pom.xml
+      run: mvn -B package --file pom.xml -P secrets
