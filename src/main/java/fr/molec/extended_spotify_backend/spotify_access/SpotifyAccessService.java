@@ -1,5 +1,8 @@
-package fr.molec.extended_spotify_backend.spotifyaccess;
+package fr.molec.extended_spotify_backend.spotify_access;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import fr.molec.extended_spotify_backend.models.TokenResponseModel;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -28,7 +31,7 @@ public class SpotifyAccessService {
 
     private final RestClient defaultClient = RestClient.create();
 
-    public void requestAccessAndRefreshTokens(String code) {
+    public TokenResponseModel getToken(String code) throws JsonProcessingException {
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("grant_type", "authorization_code");
         params.add("code", code);
@@ -43,7 +46,8 @@ public class SpotifyAccessService {
                 .retrieve()
                 .body(String.class);
 
-        System.out.println("resp: " + response);
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(response, TokenResponseModel.class);
     }
 
 }
