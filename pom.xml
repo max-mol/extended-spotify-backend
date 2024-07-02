@@ -85,6 +85,12 @@
                 <spring.profiles.active>local</spring.profiles.active>
             </properties>
         </profile>
+        <profile>
+            <id>secrets</id>
+            <properties>
+                <spring.profiles.active>secrets</spring.profiles.active>
+            </properties>
+        </profile>
     </profiles>
 
 </project>
